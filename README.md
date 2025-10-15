@@ -1,79 +1,106 @@
-# پروژه وب‌سایت باغ موزه (Museum Garden Website)
+# Museum Garden - Full-Stack Django Web Application
 
-یک وب‌اپلیکیشن فول‌استک که با پایتون و فریمورک جنگو توسعه داده شده است. این پروژه به عنوان یک نمونه کار جامع برای نمایش تسلط بر مفاهیم کلیدی بک‌اند طراحی شده است.
+A comprehensive, full-stack web application developed with Python and the Django Framework. This project serves as a portfolio piece to showcase proficiency in key backend development concepts, from database design to advanced user authentication.
 
-[![لینک ویدیو در لینکدین](لینک-یک-عکس-اسکرین-شات-از-ویدیو.png)](لینک-پست-لینکدین-خودتان)
-*(برای مشاهده عملکرد پروژه روی تصویر بالا کلیک کنید)*
+<br>
 
----
+## Live Demo (Project Showcase)
 
-## 📸 اسکرین‌شات‌ها
-
-![اسکرین شات صفحه اصلی](لینک-اسکرین-شات-۱.png)
-![اسکرین شات صفحه مقالات](لینک-اسکرین-شات-۲.png)
-*(چند اسکرین‌شات زیبا از پروژه اینجا قرار دهید)*
+[![Project Demo GIF](path/to/your/demo.gif)](link/to/your/linkedin/post)
+*(Click the GIF above to watch the full video showcase on LinkedIn)*
 
 ---
 
-## ✨ قابلیت‌های کلیدی
+## 📸 Screenshots
 
-- **سیستم مقالات و کارگاه‌ها:** با دسته‌بندی، گالری تصاویر و شمارنده بازدید.
-- **احراز هویت کامل:** سیستم ثبت‌نام، ورود و خروج امن برای کاربران.
-- **کنترل دسترسی:** محدود کردن دسترسی به بخش‌های خاص (مانند ثبت خاطره) فقط برای کاربران عضو.
-- **فرم‌های پیشرفته:** قابلیت ثبت خاطره به همراه آپلود همزمان چند تصویر.
-- **جستجوی هوشمند:** جستجوی یکپارچه در محتوای مقالات و کارگاه‌ها.
-- **رابط کاربری ریسپانسیو:** طراحی شده با Bootstrap 5 برای نمایش بی‌نقص در تمام دستگاه‌ها.
+| Home Page                                   | Articles List                                    | Workshop Details                                   |
+| ------------------------------------------- | ------------------------------------------------ | -------------------------------------------------- |
+| ![Home Page Screenshot](path/to/image1.png) | ![Articles List Screenshot](path/to/image2.png) | ![Workshop Details Screenshot](path/to/image3.png) |
+
+*(Add more beautiful screenshots of the project here)*
 
 ---
 
-## 🛠️ تکنولوژی‌های استفاده شده
+## ✨ Key Features
 
-- **Backend:** Python, Django
+- **Dynamic Content Management:** Separate, fully functional apps for Articles, Workshops, Visitor Memories, and more.
+- **Role-Based Access Control:** Certain actions, like posting a memory or contacting the museum, are restricted to authenticated users.
+- **Advanced User Authentication:** Complete user lifecycle management including registration, login, and logout, built upon Django's secure authentication system.
+- **Custom Password Validation:** Enhanced security with custom, localized error messages for password policies.
+- **Complex Form Handling:**
+    - Creation of memories with simultaneous multi-image uploads.
+    - Implemented using a combination of `ModelForm` and `inlineformset_factory`.
+- **Intelligent Search:** A unified search feature allowing users to query across multiple models (Articles and Workshops) simultaneously.
+- **Responsive Frontend:** A clean, modern, and fully responsive user interface designed with Bootstrap 5.
+
+---
+
+## 🛠️ Tech Stack & Core Concepts Demonstrated
+
+This project leverages a range of technologies and demonstrates a deep understanding of modern web development practices:
+
+- **Backend:** Python, Django, Django REST Framework (future-ready)
 - **Frontend:** HTML, CSS, JavaScript, Bootstrap 5
-- **Database:** SQLite3
-- **ابزارهای دیگر:** `python-dotenv` برای مدیریت متغیرهای محیطی
+- **Database:** SQLite3 (development), PostgreSQL (production-ready)
+- **Core Django Concepts:**
+    - **ORM Mastery:**
+        - Relational database design using `ForeignKey` and `ManyToManyField`.
+        - Performance optimization with `select_related` and `prefetch_related` to mitigate the N+1 query problem.
+        - Secure, atomic database updates using `F()` expressions for counters.
+    - **Class-Based Views (CBVs):**
+        - Implementation of `ListView`, `DetailView`, and `CreateView` for clean, reusable, and extensible code.
+        - Overriding methods like `get_context_data` and `form_valid` to handle complex logic.
+    - **Advanced Form Processing:**
+        - Custom `ModelForm` inheritance to add styles and extra fields.
+        - Handling multiple forms on one page with `inlineformset_factory`.
+    - **Security:**
+        - Protection against CSRF attacks.
+        - Secure handling of the `SECRET_KEY` using environment variables (`python-dotenv`).
+    - **URL Routing:**
+        - App-specific URL configuration using `include()` and `app_name`.
+        - Creating user-friendly, SEO-ready URLs with slugs.
 
 ---
 
-## 🚀 راه‌اندازی و نصب
+## 🚀 Local Setup and Installation
 
-برای اجرای این پروژه به صورت محلی، مراحل زیر را دنبال کنید:
+Follow these steps to get the project running locally:
 
-1.  **کلون کردن ریپازیتوری:**
+1.  **Clone the Repository:**
     ```bash
     git clone https://github.com/your-username/your-repo-name.git
     cd your-repo-name
     ```
 
-2.  **ساخت و فعال‌سازی محیط مجازی:**
+2.  **Create and Activate a Virtual Environment:**
     ```bash
     python -m venv venv
-    source venv/bin/activate  # On Windows: venv\Scripts\activate
+    source venv/bin/activate  # On Windows use: venv\Scripts\activate
     ```
 
-3.  **نصب پکیج‌های مورد نیاز:**
+3.  **Install Dependencies:**
     ```bash
     pip install -r requirements.txt
     ```
 
-4.  **ایجاد فایل `.env`:**
-    یک فایل `.env` در ریشه پروژه ساخته و `SECRET_KEY` خود را در آن قرار دهید:
-    ```
-    SECRET_KEY='your-secret-key'
+4.  **Create a `.env` File:**
+    Create a `.env` file in the project root and add your `SECRET_KEY`:
+    ```    SECRET_KEY='your-secret-key'
     ```
 
-5.  **اجرای مایگریشن‌ها:**
+5.  **Run Database Migrations:**
     ```bash
     python manage.py migrate
     ```
 
-6.  **ایجاد سوپریوزر (اختیاری):**
+6.  **Create a Superuser (Optional):**
+    This allows you to access the Django admin panel.
     ```bash
     python manage.py createsuperuser
     ```
 
-7.  **اجرای سرور:**
+7.  **Run the Development Server:**
     ```bash
     python manage.py runserver
     ```
-    حالا پروژه در آدرس `http://127.0.0.1:8000/` در دسترس است.
+    The project is now available at `http://127.0.0.1:8000/`.
