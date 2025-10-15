@@ -1,5 +1,10 @@
 # Museum Garden - Full-Stack Django Web Application
 
+![Python](https://img.shields.io/badge/python-3.11-blue.svg)
+![License](https://img.shields.io/github/license/mehranmohammadiii/MusicStore)
+![GitHub stars](https://img.shields.io/github/stars/mehranmohammadiii/MusicStore?style=social)
+![GitHub forks](https://img.shields.io/github/forks/mehranmohammadiii/MusicStore?style=social)
+
 A comprehensive, full-stack web application developed with Python and the Django Framework. This project serves as a portfolio piece to showcase proficiency in key backend development concepts, from database design to advanced user authentication.
 
 <br>
