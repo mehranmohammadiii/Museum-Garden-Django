@@ -6,7 +6,7 @@ A comprehensive, full-stack web application developed with Python and the Django
 
 ## Live Demo (Project Showcase)
 
-[![Project Demo GIF](https://github.com/mehranmohammadiii/Museum-Garden-Django/blob/master/assets/gif1.gif)](link/to/your/linkedin/post)
+[![Project Demo GIF](https://github.com/mehranmohammadiii/Museum-Garden-Django/blob/master/assets/gif1.gif)](https://www.linkedin.com/posts/mehran-mohammadi-ceo_django-python-backenddevelopment-activity-7384176820071460864-fXNm?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEwH1a0BGKsjNhnLzWNd2eE1tPo4YlxnGT4)
 *(Click the GIF above to watch the full video showcase on LinkedIn)*
 
 ---
