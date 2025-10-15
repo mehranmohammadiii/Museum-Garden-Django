@@ -15,7 +15,7 @@ A comprehensive, full-stack web application developed with Python and the Django
 
 | Home Page                                   | Articles List                                    | Workshop Details                                   |
 | ------------------------------------------- | ------------------------------------------------ | -------------------------------------------------- |
-| ![Home Page Screenshot](https://github.com/mehranmohammadiii/Museum-Garden-Django/blob/master/assets/Screenshot%20from%202025-10-15%2017-45-34.png) | ![Articles List Screenshot](path/to/image2.png) | ![Workshop Details Screenshot](path/to/image3.png) |
+| ![Home Page Screenshot](https://github.com/mehranmohammadiii/Museum-Garden-Django/blob/master/assets/Screenshot%20from%202025-10-15%2017-45-34.png) | ![Articles List Screenshot](https://github.com/mehranmohammadiii/Museum-Garden-Django/blob/master/assets/Screenshot%20from%202025-10-15%2017-46-24.png) | ![Workshop Details Screenshot](https://github.com/mehranmohammadiii/Museum-Garden-Django/blob/master/assets/Screenshot%20from%202025-10-15%2017-47-03.png) |
 
 *(Add more beautiful screenshots of the project here)*
 
