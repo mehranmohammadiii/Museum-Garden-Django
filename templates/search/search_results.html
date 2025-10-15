@@ -1,0 +1,54 @@
+{% extends 'maintemplate.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container content-section py-5">
+    {% if query %}
+        <h2 class="mb-4">نتایج جستجو برای: "{{ query }}"</h2>
+
+        {% if articles or workshops %}
+            
+            <!-- نتایج مقالات -->
+            {% if articles %}
+                <h3 class="mt-5">مقالات یافت شده</h3>
+                <hr>
+                {% for article in articles %}
+                    <div class="card shadow-sm mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ article.subject }}</h5>
+                            <p class="card-text">{{ article.short_text }}</p>
+                            <a href="{% url 'article:detail' slug=article.slug %}" class="btn btn-primary">ادامه مطلب</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <!-- نتایج کارگاه‌ها -->
+            {% if workshops %}
+                <h3 class="mt-5">کارگاه‌های یافت شده</h3>
+                <hr>
+                {% for workshop in workshops %}
+                    <div class="card shadow-sm mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ workshop.title }}</h5>
+                            <p class="card-text">{{ workshop.information|truncatewords:30 }}</p>
+                            <a href="{% url 'workshop:workshopdetailview' pk=workshop.id %}" class="btn btn-primary">مشاهده جزئیات</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+        {% else %}
+            <div class="alert alert-warning text-center" role="alert">
+                متاسفانه هیچ نتیجه‌ای برای عبارت "{{ query }}" یافت نشد.
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="alert alert-info text-center" role="alert">
+            لطفاً عبارتی را برای جستجو وارد کنید.
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

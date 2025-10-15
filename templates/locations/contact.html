@@ -1,0 +1,78 @@
+{% extends "maintemplate.html" %}
+{% load static %}
+{% block title %}
+    باغ فردوس|تاریخچه
+{% endblock title %}
+
+{% block content %}
+
+<!-- Page Header Banner -->
+<div class="page-header" style="background-image: url('{% static 'images/contact/contact.jpg' %}');">
+    <div class="container">
+        <h1 class="page-title">تماس با ما</h1>
+    </div>
+</div>
+
+<!-- Main Content Section -->
+<div class="container content-section py-5">
+    <div class="row align-items-center">
+
+        <!-- Left Column: The Form -->
+        <div class="col-md-7 mb-4 mb-md-0">
+            <h3 class="mb-4">برای ما پیام بگذارید</h3>
+            <form action="{% url 'locations:contact' %}" method="POST" novalidate>
+                
+                <!-- This is VERY important for security! -->
+                {% csrf_token %}
+                
+                <div class="mb-3">
+                    <label for="{{ form.full_name.id_for_label }}" class="form-label">نام و نام خانوادگی</label>
+                    {{ form.full_name }}
+                    <!-- کد نمایش خطا برای این فیلد -->
+                    {% if form.full_name.errors %}
+                    <div class="alert alert-danger mt-2">
+                        {{ form.full_name.errors.as_text }}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.email.id_for_label }}" class="form-label">ایمیل</label>
+                    {{ form.email }}
+                    <!-- کد نمایش خطا برای این فیلد -->
+                    {% if form.email.errors %}
+                    <div class="alert alert-danger mt-2">
+                        {{ form.email.errors.as_text }}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.subject.id_for_label }}" class="form-label">عنوان پیام</label>
+                    {{ form.subject }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.message.id_for_label }}" class="form-label">متن پیام</label>
+                    {{ form.message }}
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">ارسال پیام</button>
+            </form>
+        </div>
+
+        <!-- Right Column: Contact Info -->
+        <div class="col-md-5">
+            <div class="contact-info-box p-4 rounded shadow-sm">
+                <h4 class="mb-3">اطلاعات تماس</h4>
+                <p><i class="bi bi-geo-alt-fill detail-icon"></i> <strong>آدرس:</strong> تهران، خیابان ولیعصر، نرسیده به میدان تجریش، باغ فردوس</p>
+                <p><i class="bi bi-telephone-fill detail-icon"></i> <strong>تلفن:</strong> 09208199895</p>
+                <p><i class="bi bi-envelope-fill detail-icon"></i> <strong>ایمیل:</strong> mehranmohammaadiii@gmail.com</p>
+                <hr>
+                <p class="text-muted">ما همیشه آماده شنیدن نظرات، پیشنهادات و انتقادات شما هستیم. پیام شما در اسرع وقت بررسی خواهد شد.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+

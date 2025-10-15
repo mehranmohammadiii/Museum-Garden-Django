@@ -1,0 +1,40 @@
+{% extends 'maintemplate.html' %}
+{% load static %}
+
+{% block content %}
+<div class="page-header" style="background-image: url('{% static "images/memories/memory4.jpg" %}');">
+    <div class="container">
+        <h1 class="page-title">ثبت خاطره جدید</h1>
+    </div>
+</div>
+
+<div class="container content-section py-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        <h5 class="mb-3">مشخصات خاطره</h5>
+                        {{ form.as_p }}
+                        
+                        <hr>
+                        
+                        <h5 class="mb-3">آپلود تصاویر (اختیاری - حداکثر ۳ تصویر)</h5>
+                        {{ image_formset.management_form }}
+                        
+                        {% for image_form in image_formset %}
+                            <div class="mb-3">
+                                {{ image_form }}
+                            </div>
+                        {% endfor %}
+                        
+                        <button type="submit" class="btn btn-primary w-100 mt-3">ثبت خاطره</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

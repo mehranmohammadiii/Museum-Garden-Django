@@ -1,0 +1,60 @@
+{% extends 'maintemplate.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Page Header Banner -->
+<div class="page-header" style="background-image: url('{% static 'images/contact/contact.jpg' %}');">
+    <div class="container">
+        <h1 class="page-title">ایجاد حساب کاربری</h1>
+    </div>
+</div>
+
+<!-- Main Content Section -->
+<div class="container content-section py-5">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title text-center mb-4">ثبت‌نام</h3>
+                    
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        
+                        <!-- نمایش خطاهای کلی فرم (مثل "رمز عبورها مطابقت ندارند") -->
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {{ form.non_field_errors }}
+                            </div>
+                        {% endif %}
+
+                        <!-- حلقه روی تمام فیلدها برای نمایش زیبا -->
+                        {% for field in form %}
+                            <div class="mb-3">
+                                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                                
+                                {{ field }} {# <-- خود فیلد اینجا رندر می‌شود و کلاس form-control را از فرم پایتون می‌گیرد #}
+                                
+                                {% if field.help_text %}
+                                    <small class="form-text text-muted">{{ field.help_text|safe }}</small>
+                                {% endif %}
+                                
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger p-2 mt-1">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                        
+                        <button type="submit" class="btn btn-primary w-100">ایجاد حساب</button>
+                    </form>
+                    <hr>
+                    <div class="text-center">
+                        <p>قبلاً ثبت‌نام کرده‌اید؟ <a href="{% url "accounting:login" %}">وارد شوید</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "maintemplate.html" %}
+{% load static %}
+{% block title %}
+    باغ فردوس 
+{% endblock title %}
+
+{% block content %}
+
+    <!-- Carousel / Slider Section -->
+<div id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            {% comment %} <img src="{{media_url}}/images/slider/slide1.jpg" class="d-block w-100" alt="نمایی زیبا از باغ"> {% endcomment %}
+            <img src="{% static "images/slider/slide1.jpg" %}" class="d-block w-100" alt="نمایی زیبا از باغ">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>کشف زیبایی‌های نهفته</h5>
+                <p>در هر گوشه از این باغ، داستانی برای شنیدن وجود دارد.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            {% comment %} <img src="{{media_url}}/images/slider/slide2.jpg" class="d-block w-100" alt="معماری تاریخی موزه"> {% endcomment %}
+            <img src="{% static "images/slider/slide2.jpg" %}" class="d-block w-100" alt="معماری تاریخی موزه">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>سفری به قلب تاریخ</h5>
+                <p>معماری بی‌نظیر دوران قاجار را از نزدیک لمس کنید.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            {% comment %} <img src="{{media_url}}/images/slider/slide3.jpg" class="d-block w-100" alt="طبیعت سرسبز"> {% endcomment %}
+            <img src="{% static "images/slider/slide3.jpg" %}" class="d-block w-100" alt="طبیعت سرسبز">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>آرامش در طبیعت</h5>
+                <p>لحظاتی را به دور از هیاهوی شهر سپری کنید.</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<!-- Introduction Section -->
+<section class="intro-section py-5">
+    <div class="container text-center">
+        <h2 class="mb-4">به باغ موزه فردوس خوش آمدید</h2>
+        <p class="lead">
+            اینجا، جایی است که تاریخ، هنر و طبیعت به هم می‌پیوندند تا تجربه‌ای فراموش‌نشدنی برای شما رقم بزنند. باغ فردوس با معماری منحصربه‌فرد و فضای سرسبز و دلنشین، میزبان شما برای کشف داستان‌های گذشته و لذت بردن از آرامش طبیعت است.
+        </p>
+    </div>
+</section>
+
+{% endblock content %}

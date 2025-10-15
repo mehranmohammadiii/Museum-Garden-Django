@@ -1,0 +1,50 @@
+{% extends "maintemplate.html" %}
+{% load static %}
+{% block title %}
+    باغ فردوس|بخش های باغ
+{% endblock title %}
+
+
+{% block content %}
+    <div class="page-header" style="background-image: url('{% static 'images/slider/slide1.jpg' %}');">
+        <div class="container">
+            <h1 class="page-title">بخش‌های دیدنی باغ</h1>
+        </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="container content-section py-5">
+        <div class="row">
+            
+            <!-- Start of the Loop -->
+            {% for location in locations %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <!-- Location Image: .url is used to get the path of the uploaded image -->
+                    <img src="{{ location.image_name.url }}" class="card-img-top" alt="{{ location.title }}">
+                    
+                    <div class="card-body">
+                        <!-- Location Title -->
+                        <h5 class="card-title">{{ location.title }}</h5>
+                        
+                        <!-- Location Description: We use truncatewords to show only a summary -->
+                        <p class="card-text">{{ location.description|truncatewords:20 }}</p>
+                    </div>
+                    
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>روز بازدید:</strong> {{ location.visiting_days }}</li>
+                        <li class="list-group-item"><strong>ساعت بازدید:</strong> {{ location.visiting_hours }}</li>
+                    </ul>
+                    
+                    <div class="card-footer text-center">
+                        <!-- This button will later link to a detail page for each location -->
+                        <a href="{% url "locations:part" id=location.id %}" class="btn btn-primary">مشاهده جزئیات</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- End of the Loop -->
+
+        </div>
+    </div>
+{% endblock content %}

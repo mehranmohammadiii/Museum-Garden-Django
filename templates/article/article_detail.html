@@ -1,0 +1,90 @@
+{% extends "maintemplate.html" %}
+{% load static %}
+{% block title %}
+    باغ فردوس|تاریخچه
+{% endblock title %}
+
+{% block content %}
+
+<!-- Dynamic Page Header Banner -->
+<div class="page-header" style="background-image: url('{% static "images/slider/" %}{{ article.image_name }}');">
+    <div class="container">
+        <h1 class="page-title">{{ article.subject }}</h1>
+    </div>
+</div>
+
+<!-- Main Content Section -->
+<div class="container content-section py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <!-- Article Meta Info -->
+            <div class="text-center text-muted mb-4">
+                <p>
+                    <strong>نویسندگان:</strong> 
+                    {% for author in article.author.all %}
+                        {{ author.name }} {{ author.family }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                <p>
+                    <span><strong>تاریخ انتشار:</strong> {{ article.publication_date }}</span> | 
+                    <span><strong>تعداد بازدید:</strong> {{ article.view_number }}</span>
+                </p>
+            </div>
+            <hr>
+
+            <!-- Article Full Text -->
+            <div class="article-body mt-4">
+                {{ article.text|linebreaks }}
+            </div>
+
+            <!-- PDF Download Link (optional) -->
+            {% if article.pdf_file %}
+            <div class="text-center mt-5">
+                {% comment %} <a href="{{ article.pdf_file.url }}" class="btn btn-success" download> {% endcomment %}
+                <a href="{% static "pdf_file/" %}{{article.pdf_file}}" class="btn btn-success" download>
+                    <i class="bi bi-file-earmark-pdf-fill"></i> دانلود فایل PDF مقاله
+                </a>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+
+<!-- Article Gallery Section (Add this before the endblock) -->
+    {% if gallery_images %}
+    <div class="row mt-5">
+        <div class="col-12">
+            <hr>
+            <h3 class="text-center my-4">گالری تصاویر مقاله</h3>
+        </div>
+        
+        <!-- Loop through gallery images -->
+        {% comment %} {% for image in article.articlegallery_set.all %} {% endcomment %}
+        {% comment %} {% for image in article.gallery_images.all %} {% endcomment %}
+        {% for image in gallery_images %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <!-- We add a link to open the image in a new tab -->
+                {% comment %} <a href="{{ image.name.url }}" target="_blank"> {% endcomment %}
+                <a href="{% static "images/detailgallery1/" %}{{image.name}}" target="_blank">
+                    {% comment %} <img src="{{ image.name.url }}" class="card-img-top" alt="{{ image.name.name }}"> {% endcomment %}
+                    <img src="{% static "images/detailgallery1/" %}{{image.name}}" class="card-img-top" alt="{{ image.name.name }}">
+                </a>
+                {# فرض کرده‌ام نام فیلد تصویر در مدل ArticleGallery هم "name" است #}
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+    {% endif %}
+
+</div> {# This closes the container div #}
+<br>
+<br>
+<br>
+<br>
+
+{% endblock content %}
+
+

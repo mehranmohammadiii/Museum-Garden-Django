@@ -1,0 +1,211 @@
+{% comment %} {% load static %}
+<nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="{% url "main:index" %}">باغ فردوس</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-navbar">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url "main:index" %}">صفحه اصلی</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        معرفی باغ
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url "locations:histori" %}">تاریخچه</a></li>
+                        <li><a class="dropdown-item" href="{% url "locations:parts" %}">بخش‌های باغ</a></li>
+                        <li><a class="dropdown-item" href="{% url "locations:visitor_guide" %}">اطلاعات بازدید</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% static "pdf_file/location.pdf" %}">دانلود مسیر بازدید</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">گالری</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">خاطرات بازدید</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        آموزش و پژوهش
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url "article:blog" %}">مقالات</a></li>
+                        <li><a class="dropdown-item" href="{% url "workshop:workshoplistview" %}">کارگاه ها </a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "locations:contact" %}">تماس با ما</a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="#">ورود / ثبت‌نام</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>  {% endcomment %}
+
+
+{% comment %} -------------------------------------------------------------------------------------------- {% endcomment %}
+
+
+{% load static %}
+<nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="{% url "main:index" %}">باغ فردوس</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-navbar">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url "main:index" %}">صفحه اصلی</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        معرفی باغ
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url "locations:histori" %}">تاریخچه</a></li>
+                        <li><a class="dropdown-item" href="{% url "locations:parts" %}">بخش‌های باغ</a></li>
+                        <li><a class="dropdown-item" href="{% url "locations:visitor_guide" %}">اطلاعات بازدید</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% static "pdf_file/location.pdf" %}">دانلود مسیر بازدید</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">گالری</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "memories:memorylist" %}">خاطرات بازدید</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        آموزش و پژوهش
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url "article:blog" %}">مقالات</a></li>
+                        <li><a class="dropdown-item" href="{% url "workshop:workshoplistview" %}">کارگاه ها </a></li>
+                    </ul>
+                </li>
+
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "locations:contact" %}">تماس با ما</a>
+                </li>
+                {% endif %}
+
+                 {# === شروع تغییرات: بخش خوشامدگویی یا ورود/ثبت‌نام === #}
+           {% if user.is_authenticated %}
+                {# اگر کاربر وارد شده است #}
+                <div class="d-flex align-items-center">
+                    <span class="navbar-text me-3 ml-2">
+                        خوش آمدید، {{ user.first_name|default:user.username }}!
+                    </span>
+                    <span class="navbar-text me-3 ml-2">
+                    
+                    </span>
+                    <form method="post" action="{% url 'accounting:logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger btn-sm " >خروج</button>
+                    </form>
+                </div>
+            {% else %} 
+                {# اگر کاربر وارد نشده است (بازدیدکننده) #}
+                <div>
+                    {# === تغییر ۳: اضافه کردن me-2 برای فاصله === #}
+                    <a href="{% url 'accounting:login' %}" class="btn btn-primary btn-sm me-2">ورود</a>
+                    <a href="{% url 'accounting:signup' %}" class="btn btn-secondary btn-sm">ثبت‌نام</a>
+                </div>
+            {% endif %}
+            {# === پایان تغییرات === #}
+            </ul>
+        </div>
+    </div>
+</nav>  
+
+
+{% comment %} -------------------------------------------------------------------------------------------- {% endcomment %}
+
+
+{% comment %} <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="{% url "main:index" %}">باغ فردوس</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-navbar">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "main:index" %}">صفحه اصلی</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        معرفی باغ
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url "locations:histori" %}">تاریخچه</a></li>
+                        <li><a class="dropdown-item" href="{% url "locations:parts" %}">بخش‌های باغ</a></li>
+                        <li><a class="dropdown-item" href="{% url "locations:visitor_guide" %}">اطلاعات بازدید</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% static 'pdf/location.pdf' %}" download>دانلود مسیر بازدید</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">گالری</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">خاطرات بازدید</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        آموزش و پژوهش
+                    </a>
+                    <ul class="dropdown-menu">
+                         <li><a class="dropdown-item" href="{% url "article:blog" %}">مقالات</a></li>
+                         <li><a class="dropdown-item" href="{% url "workshop:workshoplistview" %}">کارگاه‌ها</a></li>
+                    </ul>
+                </li>
+
+                {# === شروع تغییرات: کنترل دسترسی برای "تماس با ما" === #}
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "locations:contact" %}">تماس با ما</a>
+                </li>
+                {% endif %}
+                {# === پایان تغییرات === #}
+            </ul>
+
+            {# === شروع تغییرات: بخش خوشامدگویی یا ورود/ثبت‌نام === #}
+            <div class="d-flex align-items-center">
+                {% if user.is_authenticated %}
+                    {# اگر کاربر وارد شده است #}
+                    <span class="navbar-text me-3">
+                        خوش آمدید، {{ user.first_name|default:user.username }}!
+                    </span>
+                    <a href="{% url 'accounting:logout' %}" class="btn btn-outline-danger">خروج</a>
+                {% else %}
+                    {# اگر کاربر وارد نشده است (بازدیدکننده) #}
+                    <a href="{% url 'accounting:login' %}" class="btn btn-primary me-2">ورود</a>
+                    <a href="{% url 'accounting:signup' %}" class="btn btn-secondary">ثبت‌نام</a>
+                {% endif %}
+            </div>
+            {# === پایان تغییرات === #}
+
+        </div>
+    </div>
+</nav> {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+

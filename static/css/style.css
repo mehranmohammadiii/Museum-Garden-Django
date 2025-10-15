@@ -1,0 +1,145 @@
+/* body{
+    background-color: yellow !important;
+} */
+/* Import a nice Persian font */
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap');
+
+body {
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+/* --- Top Header Styles --- */
+.top-header {
+    background-color: #6AF2B5; /* رنگ سبزآبی مشابه تصویر */
+    padding: 1rem 0;
+}
+
+.logo {
+    height: 120px; /* اندازه لوگو */
+    width: 120px;
+}
+
+/* --- Navbar Styles --- */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    font-weight: 600;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #007bff;
+}
+
+.dropdown-item {
+    text-align: right; /* برای منوهای بازشونده فارسی */
+}
+
+
+/* --- Carousel Styles --- */
+#hero-carousel .carousel-item {
+    height: 70vh; /* ارتفاع اسلایدر */
+}
+
+#hero-carousel .carousel-item img {
+    height: 100%;
+    object-fit: cover; /* برای جلوگیری از دفرمه شدن عکس */
+}
+
+/* --- Introduction Section --- */
+.intro-section {
+    background-color: #f8f9fa;
+}
+
+/* === Page Header Styles (Can be used for other pages too) === */
+.page-header {
+    height: 40vh; /* ارتفاع بنر بالای صفحه */
+    background-size: cover;
+    background-position: center ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* سایه متن برای خوانایی بهتر */
+    position: relative;
+}
+
+/* A dark overlay on the banner image to make title pop */
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.page-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    position: relative; /* To bring it on top of the overlay */
+}
+
+/* === Content Section Styles === */
+.content-section p {
+    line-height: 1.9; /* فاصله بین خطوط برای خوانایی بهتر */
+    font-size: 1.1rem;
+    text-align: justify; /* مرتب‌سازی متن از دو طرف */
+}
+
+.content-section .lead {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #333;
+}
+
+/* * === Card Styles === */ */
+.card {
+    border: none; /* حذف حاشیه پیش‌فرض کارت */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* کمی بالا بیاید */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important; /* سایه زیباتر */
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover; /* جلوگیری از دفرمه شدن عکس‌ها */
+}
+
+/* === Detail Page Styles === */
+.detail-icon {
+    color: #007bff; /* رنگ آیکون */
+    margin-left: 8px; /* کمی فاصله از متن */
+    font-size: 1.2rem;
+}
+
+.alert-info {
+    background-color: #e9f7ff;
+    border-color: #bce8f1;
+}
+
+/* === Contact Page Styles === */
+.contact-info-box {
+    background-color: #f8f9fa; /* A light grey background */
+}
+
+/* === Workshop Card Styles === */
+.workshop-card .card-img-container {
+    position: relative;
+}
+
+.workshop-card .workshop-status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0.9rem;
+    padding: 0.4em 0.7em;
+}

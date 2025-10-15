@@ -1,0 +1,59 @@
+{% extends "maintemplate.html" %}
+{% load static %}
+{% block title %}
+    باغ فردوس|مکان
+{% endblock title %}
+
+{% block content %}
+    <!-- Dynamic Page Header Banner -->
+<div class="page-header" style="background-image: url('{{ location.image_name.url }}');">
+    <div class="container">
+        <h1 class="page-title">{{ location.title }}</h1>
+    </div>
+</div>
+
+<!-- Main Content Section -->
+<div class="container content-section py-5">
+    <div class="row">
+
+        <!-- Right Column: Main Image -->
+        <div class="col-md-7 mb-4">
+            <img src="{{ location.image_name.url }}" class="img-fluid rounded shadow-lg" alt="{{ location.title }}">
+        </div>
+
+        <!-- Left Column: Details -->
+        <div class="col-md-5">
+            <h3>{{ location.title }}</h3>
+            <hr>
+            
+            <!-- Full Description -->
+            <p class="text-muted" style="text-align: justify;">
+                {{ location.description }}
+            </p>
+            
+            <div class="mt-4">
+                <h5><i class="bi bi-calendar-week detail-icon"></i> روزهای بازدید</h5>
+                <p>{{ location.visiting_days }}</p>
+            </div>
+
+            <div class="mt-4">
+                <h5><i class="bi bi-clock detail-icon"></i> ساعات بازدید</h5>
+                <p>{{ location.visiting_hours }}</p>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Rules and Regulations Section -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="alert alert-info" role="alert">
+                <h4 class="alert-heading"><i class="bi bi-shield-check"></i> قوانین و مقررات</h4>
+                <hr>
+                <p>{{ location.ruls|linebreaks }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

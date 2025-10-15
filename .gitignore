@@ -1,0 +1,19 @@
+# Virtual Environment
+venv/
+env/
+
+# Django cache files
+__pycache__/
+
+# SQLite Database
+*.sqlite3
+
+# Media files uploaded by users (optional but recommended for open source)
+/media/
+
+# IDE files
+.idea/
+*.vscode/
+
+# Environment variables file
+.env

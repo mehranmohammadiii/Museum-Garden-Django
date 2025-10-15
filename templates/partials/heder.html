@@ -1,0 +1,17 @@
+{% load static %}
+<header class="top-header">
+    <div class="container d-flex justify-content-between align-items-center">
+
+        <!-- Search Box -->
+        <form class="d-flex" method="GET" action="{% url 'search:results' %}">
+            <input class="form-control me-2" type="search" name="q" placeholder="جستجو در سایت..." aria-label="Search" value="{{ query|default:'' }}">
+            <button class="btn btn-outline-light" type="submit">جستجو</button>
+        </form>
+
+        <!-- Logo -->
+        <a href="{% url "main:index" %}">
+            <!-- فرض می‌کنیم لوگو را در static/images/logo.png قرار می‌دهی -->
+            <img src="{% static "images/logo/logo.png" %}" alt="لوگوی باغ موزه" class="logo">
+        </a>
+    </div>
+</header>
