@@ -6,6 +6,9 @@
 
 {% block content %}
 
+ {% comment %} {% if last_article_viewed %}
+   <p>آخرین بازدید شما: <a href="...">{{ last_article_viewed.subject }}</a></p>
+ {% endif %} {% endcomment %}
     <!-- Carousel / Slider Section -->
 <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">

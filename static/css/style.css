@@ -1,8 +1,24 @@
-/* body{
-    background-color: yellow !important;
-} */
-/* Import a nice Persian font */
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap');
+/* vazirmatn-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/vazirmatn-v16-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* vazirmatn-800 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 800;
+  src: url('../fonts/vazirmatn-v16-latin-800.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+body {
+    font-family: 'Vazirmatn', sans-serif;
+}
 
 body {
     font-family: 'Vazirmatn', sans-serif;
@@ -10,12 +26,12 @@ body {
 
 /* --- Top Header Styles --- */
 .top-header {
-    background-color: #6AF2B5; /* رنگ سبزآبی مشابه تصویر */
+    background-color: #6AF2B5; 
     padding: 1rem 0;
 }
 
 .logo {
-    height: 120px; /* اندازه لوگو */
+    height: 120px;
     width: 120px;
 }
 
@@ -36,18 +52,18 @@ body {
 }
 
 .dropdown-item {
-    text-align: right; /* برای منوهای بازشونده فارسی */
+    text-align: right; 
 }
 
 
 /* --- Carousel Styles --- */
 #hero-carousel .carousel-item {
-    height: 70vh; /* ارتفاع اسلایدر */
+    height: 70vh; 
 }
 
 #hero-carousel .carousel-item img {
     height: 100%;
-    object-fit: cover; /* برای جلوگیری از دفرمه شدن عکس */
+    object-fit: cover; 
 }
 
 /* --- Introduction Section --- */
@@ -57,14 +73,14 @@ body {
 
 /* === Page Header Styles (Can be used for other pages too) === */
 .page-header {
-    height: 40vh; /* ارتفاع بنر بالای صفحه */
+    height: 40vh; 
     background-size: cover;
     background-position: center ;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* سایه متن برای خوانایی بهتر */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
     position: relative;
 }
 
@@ -87,9 +103,9 @@ body {
 
 /* === Content Section Styles === */
 .content-section p {
-    line-height: 1.9; /* فاصله بین خطوط برای خوانایی بهتر */
+    line-height: 1.9; 
     font-size: 1.1rem;
-    text-align: justify; /* مرتب‌سازی متن از دو طرف */
+    text-align: justify; 
 }
 
 .content-section .lead {
@@ -100,24 +116,24 @@ body {
 
 /* * === Card Styles === */ */
 .card {
-    border: none; /* حذف حاشیه پیش‌فرض کارت */
+    border: none;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-5px); /* کمی بالا بیاید */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important; /* سایه زیباتر */
+    transform: translateY(-5px); 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important; 
 }
 
 .card-img-top {
     height: 200px;
-    object-fit: cover; /* جلوگیری از دفرمه شدن عکس‌ها */
+    object-fit: cover; 
 }
 
 /* === Detail Page Styles === */
 .detail-icon {
-    color: #007bff; /* رنگ آیکون */
-    margin-left: 8px; /* کمی فاصله از متن */
+    color: #007bff; 
+    margin-left: 8px; 
     font-size: 1.2rem;
 }
 

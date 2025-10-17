@@ -17,6 +17,7 @@
 </head>
 <body class='rtl'>
 
+    {% comment %} {{ request.session.last_viewed_article.title }} {% endcomment %}
     {% if messages %}
         <div class="container mt-3">
             {% for message in messages %}
