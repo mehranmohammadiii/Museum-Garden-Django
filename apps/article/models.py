@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
-# Create your models here.
 
 class Author(models.Model):
     name = models.CharField(max_length=15,verbose_name="نام")
@@ -43,6 +43,7 @@ class Article(models.Model):
     view_number = models.PositiveSmallIntegerField(default=0,verbose_name="تعداد بازدید")
     slug = models.SlugField(max_length=50)
     pdf_file = models.CharField(max_length=200,verbose_name="فایل pdf مقاله")
+    likes = models.PositiveSmallIntegerField(verbose_name='تعداد لایک',null=True)
 
     def __str__(self):
         return self.subject
@@ -61,4 +62,16 @@ class ArticleGallery(models.Model):
     class Meta :
         verbose_name = 'تصویر '
         verbose_name_plural = ' تصویر ها'
+# --------------------------------------------------------------------------------------------------
+class ArticleLike(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='کاربر')
+    article = models.ForeignKey(Article,on_delete=models.CASCADE,verbose_name='مقاله')
+    created_at = models.DateField(auto_now_add=True)
 
+    def __str__(self):
+        return f'{self.user}/t{self.article}'
+
+    class Meta :
+        verbose_name = 'لایک '
+        verbose_name_plural = ' لایک ها'
+        unique_together = ('user','article')

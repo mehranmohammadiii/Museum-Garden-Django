@@ -1,9 +1,10 @@
 from django.shortcuts import render,get_object_or_404
-from .models import Article,ArticleGallery
+from .models import Article,ArticleGallery,ArticleLike
 from django.core.paginator import Paginator
 from django.db.models import F
-# Create your views here.
-
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+# from django.contrib.auth.mixins import LoginRequiredMixin
 
 def show_article(request):
 
@@ -29,3 +30,30 @@ def show_article_detail(request,slug):
     # response.set_cookie('last_viewed_slug', article.slug, max_age=30 * 24 * 60 * 60)
     # return response
 
+
+# @login_required
+# def like_article_view(request,pk):
+#     if request.method=='POST':
+#         try:
+#             article=Article.objects.get(id=pk)
+#             article.likes+=1
+#             article.save()
+#             return JsonResponse({'status':'ok','likes_count':article.likes})
+#         except Article.DoesNotExist:
+#             return JsonResponse({'status':'error','message':'Article not found0'},status = 404)
+
+#     return JsonResponse({'status':'erroe','message':'invalid not found'},status = 400)
+
+
+@login_required
+def like_article_view(request,pk):
+    if request.method=='POST':
+      article = get_object_or_404(Article,id=pk)  
+      like, created =  ArticleLike.objects.get_or_create(user=request.user,article=article) 
+      if created :
+          article.likes=F('likes')+1
+          article.save()
+          article.refresh_from_db()
+          return JsonResponse({'status': 'ok', 'message': 'liked', 'likes_count': article.likes})
+      else:
+          return JsonResponse({'status': 'error', 'message': 'already_liked', 'likes_count': article.likes})

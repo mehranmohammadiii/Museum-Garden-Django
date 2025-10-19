@@ -28,6 +28,10 @@
                 <p>
                     <span><strong>تاریخ انتشار:</strong> {{ article.publication_date }}</span> | 
                     <span><strong>تعداد بازدید:</strong> {{ article.view_number }}</span>
+
+                    <button id="like-btn" data-article-id="{{ article.pk }}" data-url="{% url 'article:like_article_view' pk=article.pk %}">
+                        لایک (<span id="like-count">{{ article.likes }}</span>)
+                    </button>
                 </p>
             </div>
             <hr>
@@ -84,6 +88,55 @@
 <br>
 <br>
 <br>
+
+<script>
+    // ۱. پیدا کردن دکمه و عناصر لازم
+    const likeBtn = document.getElementById('like-btn');
+    const likeCountSpan = document.getElementById('like-count');
+    
+    // ۲. گوش دادن به رویداد کلیک
+    likeBtn.addEventListener('click', function() {
+        const articleId = this.dataset.articleId;
+        const url = this.dataset.url;
+        
+        // ۳. گرفتن توکن امنیتی CSRF از کوکی‌ها
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+
+        // ۴. ارسال درخواست POST با Fetch API (گارسون به آشپزخانه می‌رود)
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken, // ارسال توکن امنیتی
+            },
+            // body: JSON.stringify({ 'article_id': articleId }) // اگر داده‌ای برای ارسال داشتیم
+        })
+        .then(response => response.json()) // ۵. تبدیل پاسخ متنی به JSON
+        .then(data => { // ۶. کار با داده‌های برگشتی (گارسون با سینی برگشته)
+            if (data.status === 'ok') {
+                // ۷. به‌روزرسانی صفحه (قرار دادن نوشیدنی روی میز)
+                likeCountSpan.textContent = data.likes_count;
+                likeBtn.textContent = 'لایک شد!';
+                likeBtn.disabled = true; // غیرفعال کردن دکمه
+            }
+        })
+        .catch(error => console.error('Error:', error)); // مدیریت خطا
+    });
+</script>
 
 {% endblock content %}
 
