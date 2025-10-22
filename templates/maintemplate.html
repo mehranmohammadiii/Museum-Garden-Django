@@ -17,7 +17,8 @@
 </head>
 <body class='rtl'>
 
-    {% comment %} {{ request.session.last_viewed_article.title }} {% endcomment %}
+    
+    {% comment %} <a href="{% url "article:detail" slug=request.session.last_viewed_article.slug %}">{{ request.session.last_viewed_article.title }}</a> {% endcomment %}
     {% if messages %}
         <div class="container mt-3">
             {% for message in messages %}

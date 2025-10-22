@@ -75,7 +75,6 @@
                     {% comment %} <img src="{{ image.name.url }}" class="card-img-top" alt="{{ image.name.name }}"> {% endcomment %}
                     <img src="{% static "images/detailgallery1/" %}{{image.name}}" class="card-img-top" alt="{{ image.name.name }}">
                 </a>
-                {# فرض کرده‌ام نام فیلد تصویر در مدل ArticleGallery هم "name" است #}
             </div>
         </div>
         {% endfor %}
@@ -90,16 +89,13 @@
 <br>
 
 <script>
-    // ۱. پیدا کردن دکمه و عناصر لازم
     const likeBtn = document.getElementById('like-btn');
     const likeCountSpan = document.getElementById('like-count');
     
-    // ۲. گوش دادن به رویداد کلیک
     likeBtn.addEventListener('click', function() {
         const articleId = this.dataset.articleId;
         const url = this.dataset.url;
         
-        // ۳. گرفتن توکن امنیتی CSRF از کوکی‌ها
         function getCookie(name) {
             let cookieValue = null;
             if (document.cookie && document.cookie !== '') {
@@ -116,25 +112,22 @@
         }
         const csrftoken = getCookie('csrftoken');
 
-        // ۴. ارسال درخواست POST با Fetch API (گارسون به آشپزخانه می‌رود)
         fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRFToken': csrftoken, // ارسال توکن امنیتی
+                'X-CSRFToken': csrftoken,    
             },
-            // body: JSON.stringify({ 'article_id': articleId }) // اگر داده‌ای برای ارسال داشتیم
         })
-        .then(response => response.json()) // ۵. تبدیل پاسخ متنی به JSON
-        .then(data => { // ۶. کار با داده‌های برگشتی (گارسون با سینی برگشته)
+        .then(response => response.json())      
+        .then(data => {      
             if (data.status === 'ok') {
-                // ۷. به‌روزرسانی صفحه (قرار دادن نوشیدنی روی میز)
                 likeCountSpan.textContent = data.likes_count;
                 likeBtn.textContent = 'لایک شد!';
-                likeBtn.disabled = true; // غیرفعال کردن دکمه
+                likeBtn.disabled = true;    
             }
         })
-        .catch(error => console.error('Error:', error)); // مدیریت خطا
+        .catch(error => console.error('Error:', error)); 
     });
 </script>
 

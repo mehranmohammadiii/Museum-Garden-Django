@@ -9,9 +9,9 @@ def media_admin(request):
 
 
 def index(request):
-    context = {
-        "media_url" : settings.MEDIA_URL
-    }
+    # context = {
+    #     "media_url" : settings.MEDIA_URL
+    # }
     return render(request,'main/index.html')
 
 

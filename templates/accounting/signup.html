@@ -21,19 +21,17 @@
                     <form method="post" novalidate>
                         {% csrf_token %}
                         
-                        <!-- نمایش خطاهای کلی فرم (مثل "رمز عبورها مطابقت ندارند") -->
                         {% if form.non_field_errors %}
                             <div class="alert alert-danger">
                                 {{ form.non_field_errors }}
                             </div>
                         {% endif %}
 
-                        <!-- حلقه روی تمام فیلدها برای نمایش زیبا -->
                         {% for field in form %}
                             <div class="mb-3">
                                 <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
                                 
-                                {{ field }} {# <-- خود فیلد اینجا رندر می‌شود و کلاس form-control را از فرم پایتون می‌گیرد #}
+                                {{ field }}
                                 
                                 {% if field.help_text %}
                                     <small class="form-text text-muted">{{ field.help_text|safe }}</small>

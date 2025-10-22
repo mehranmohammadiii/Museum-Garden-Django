@@ -10,7 +10,20 @@ from django.core.exceptions import ValidationError
 
 
 
+
+
+# def validate_full_name(value):
+#     if len(value.split()) < 2:
+#         raise ValidationError(
+#             code='invalid_full_name'
+#         )
 class MessageForm(forms.ModelForm):
+
+    #     full_name = forms.CharField(
+    #     label="نام و نام خانوادگی",
+    #     validators=[validate_full_name], 
+    #     widget=forms.TextInput(attrs={'class': 'form-control'})
+    # )
     class Meta:
         model = Contact
         fields = ['full_name', 'email', 'subject', 'message']

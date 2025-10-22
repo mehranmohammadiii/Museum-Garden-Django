@@ -1,1 +1,0 @@
-print("212".isalpha())

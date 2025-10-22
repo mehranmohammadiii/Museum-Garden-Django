@@ -5,7 +5,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
 
-app_name = 'workshop'
+
 
 class WorkshopListView(ListView):
     model = Workshop

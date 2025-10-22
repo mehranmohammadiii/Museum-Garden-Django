@@ -21,7 +21,6 @@
                     <form method="post">
                         {% csrf_token %}
                         
-                        <!-- نمایش خطاهای کلی فرم (مثلاً نام کاربری یا رمز عبور اشتباه است) -->
                         {% if form.non_field_errors %}
                             <div class="alert alert-danger">
                                 {% for error in form.non_field_errors %}
@@ -30,7 +29,6 @@
                             </div>
                         {% endif %}
 
-                        <!-- نمایش فیلدهای فرم -->
                         <div class="mb-3">
                             <label for="{{ form.username.id_for_label }}" class="form-label">{{ form.username.label }}</label>
                             <input type="text" name="username" class="form-control" required id="{{ form.username.id_for_label }}">

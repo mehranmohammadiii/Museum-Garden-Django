@@ -49,8 +49,8 @@ def show_article_detail(request,slug):
 def like_article_view(request,pk):
     if request.method=='POST':
       article = get_object_or_404(Article,id=pk)  
-      like, created =  ArticleLike.objects.get_or_create(user=request.user,article=article) 
-      if created :
+      like, status =  ArticleLike.objects.get_or_create(user=request.user,article=article) 
+      if status :
           article.likes=F('likes')+1
           article.save()
           article.refresh_from_db()
